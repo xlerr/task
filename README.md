@@ -34,7 +34,11 @@ php -S 127.0.0.1:9900 -t backend/web
 ### 创建异步任务
 
 ```php
-\xlerr\task\DemoTaskHandler::make(['name' => 'abcd'], ['task_priority' => \xlerr\task\models\Task::PRIORITY_1]);
+\xlerr\task\DemoTaskHandler::make([
+    'name' => 'abcd',
+], [
+    'task_priority' => \xlerr\task\models\Task::PRIORITY_1,
+]);
 ```
 
 控制台调用`./yii task/process-all`执行任务
