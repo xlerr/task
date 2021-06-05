@@ -17,7 +17,7 @@ composer require xlerr/task
 
 // backend/config/main.php
 'modules' => [
-    'task' => \xlerr\task\controllers\TaskController::class,
+    'task1' => \xlerr\task\Module::class,
 ],
 ```
 
