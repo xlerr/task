@@ -30,4 +30,11 @@ php -S 127.0.0.1:9900 -t backend/web
 
 服务启动后, 访问 `http://127.0.0.1:9900/task` 打开task管理页面
 
-控制台调用`./yii task/process-all`执行所有任务
+
+### 创建异步任务
+
+```php
+\xlerr\task\DemoTaskHandler::make(['name' => 'abcd'], ['task_priority' => \xlerr\task\models\Task::PRIORITY_1]);
+```
+
+控制台调用`./yii task/process-all`执行任务
