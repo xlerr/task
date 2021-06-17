@@ -1,6 +1,6 @@
 {
   "name": "xlerr/task",
-  "description": "task",
+  "description": "yii2 task",
   "type": "yii2-extension",
   "license": "MIT",
   "authors": [
@@ -11,7 +11,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.4",
     "nesbot/carbon": "^2.0",
     "xlerr/yii2-common-widgets": "^1.0",
     "xlerr/yii2-widget-code-editor": "^1.0",

@@ -2,12 +2,11 @@
 
 namespace xlerr\task\controllers;
 
-use Carbon\Carbon;
+use Throwable;
 use xlerr\task\models\Task;
 use xlerr\task\models\TaskSearch;
-use Throwable;
 use Yii;
-use yii\data\ActiveDataProvider;
+use yii\base\BaseObject;
 use yii\db\StaleObjectException;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -25,7 +24,7 @@ class TaskController extends Controller
     {
         return [
             'verbs' => [
-                'class'   => VerbFilter::className(),
+                'class'   => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -104,6 +103,7 @@ class TaskController extends Controller
         $model = $this->findModel($id);
         if ($model->task_is_synchronization) {
             Yii::$app->session->setFlash('error', '同步任务不允许修改');
+
             return $this->redirect($this->request->referrer);
         }
         //进入修改页面，根据数据库nextrundate填写表单 下次运行日期和下次运行时间字段。

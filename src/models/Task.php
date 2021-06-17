@@ -5,8 +5,11 @@ namespace xlerr\task\models;
 use Carbon\Carbon;
 use Exception;
 use Throwable;
+use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Connection;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "task".
@@ -63,7 +66,16 @@ class Task extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return '{{%task}}';
+        return ArrayHelper::getValue(Yii::$app->params, 'task.tablename', '{{%task}}');
+    }
+
+    /**
+     * @return Connection
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getDb()
+    {
+        return Yii::$app->get(ArrayHelper::getValue(Yii::$app->params, 'task.db', 'db'));
     }
 
     /**
@@ -174,7 +186,7 @@ class Task extends ActiveRecord
                 ->orderBy(['task_next_run_date' => SORT_ASC,])
                 ->limit(500)
                 ->select(['task_id'])
-                ->column();
+                ->column($db);
         });
     }
 

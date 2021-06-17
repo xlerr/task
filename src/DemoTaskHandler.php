@@ -21,7 +21,7 @@ class DemoTaskHandler extends TaskHandler
         ];
     }
 
-    public function process(Task $task)
+    public function process()
     {
         echo $this->name . PHP_EOL;
 

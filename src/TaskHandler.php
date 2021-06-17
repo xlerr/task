@@ -33,7 +33,7 @@ abstract class TaskHandler extends Model implements TaskHandlerInterface
      *
      * @return bool
      */
-    public function beforeProcess(Task $task): bool
+    public function beforeProcess(): bool
     {
         return true;
     }
@@ -54,7 +54,7 @@ abstract class TaskHandler extends Model implements TaskHandlerInterface
      *
      * @return bool
      */
-    public function isNeedSuspend(Task $task): bool
+    public function isNeedSuspend(): bool
     {
         return false;
     }
@@ -217,12 +217,12 @@ abstract class TaskHandler extends Model implements TaskHandlerInterface
 
             $transaction = null;
             try {
-                if ($handler->isNeedSuspend($task)) {
+                if ($handler->isNeedSuspend()) {
                     $handler->suspend();
 
                     return self::endLog($logs);
                 }
-                if (!$handler->beforeProcess($task)) {
+                if (!$handler->beforeProcess()) {
                     throw new UserException('beforeProcess 执行失败');
                 }
 
@@ -272,7 +272,7 @@ abstract class TaskHandler extends Model implements TaskHandlerInterface
 
         $this->load($data);
 
-        $result = $this->process($this->task);
+        $result = $this->process();
 
         if ($result instanceof TaskResult) {
             return $result;

@@ -9,8 +9,8 @@ class TaskResult extends BaseObject
     /** @var int */
     public int $code;
 
-    /** @var string */
-    public string $message;
+    /** @var mixed */
+    public $message;
 
     /** @var mixed */
     public $data;
